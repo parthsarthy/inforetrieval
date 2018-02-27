@@ -39,8 +39,8 @@ public class CranFileSplitter {
 
 	public static void main(String[] args) {
 
-		String inputDirectory = "/Users/parthsarthy/Downloads/cran/";
-		Splitter documents_splitter = new Splitter(inputDirectory + "cran.all.1400", "/Users/parthsarthy/Downloads/split_documents/");
+		String inputDirectory = "../lucene-assignment/cran/";
+		Splitter documents_splitter = new Splitter(inputDirectory + "cran.all.1400", "../lucene-assignment/split_documents/");
 		documents_splitter.start();
 		//Splitter queries_splitter = new Splitter(inputDirectory + "cran.qry", "/Users/rahulsatya/Desktop/split_query");
 		//queries_splitter.start();
