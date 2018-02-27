@@ -203,57 +203,9 @@ public class FileIndexer {
 	      Field pathField = new StringField("path", file.toString(), Field.Store.YES);
 	      doc.add(pathField);
 	      
-	      // Add the last modified date of the file a field named "modified".
-	      // Use a LongPoint that is indexed (i.e. efficiently filterable with
-	      // PointRangeQuery).  This indexes to milli-second resolution, which
-	      // is often too fine.  You could instead create a number based on
-	      // year/month/day/hour/minutes/seconds, down the resolution you require.
-	      // For example the long value 2011021714 would mean
-	      // February 17, 2011, 2-3 PM.
 	      doc.add(new LongPoint("modified", lastModified));
-	      
-	      // Add the contents of the file to a field named "contents".  Specify a Reader,
-	      // so that the text of the file is tokenized and indexed, but not stored.
-	      // Note that FileReader expects the file to be in UTF-8 encoding.
-	      // If that's not the case searching for special characters will fail.
-	      /*BufferedReader x = new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8));
-	      System.out.println("BufferRead: " + x);
-	      String CurrLine;
-	      while ((CurrLine = x.readLine()) != null) {
-				System.out.println(CurrLine);
-	      }*/
-	      //x = new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8);
-	      //Field f = new TextField("author", new BufferedReader(new InputStreamReader(auth, StandardCharsets.UTF_8)));
-	      
-//	      BufferedReader reader = new BufferedReader(new InputStreamReader(auth, StandardCharsets.UTF_8));
-	      //String read = reader.readLine();
-	      //System.out.println(read);
-	      
-	      
-//	    	  String x1 = (new BufferedReader(new InputStreamReader(titl)).readLine());
-//	    	  String x2 = (new BufferedReader(new InputStreamReader(auth)).readLine());
 	    	  String x3 = (new BufferedReader(new InputStreamReader(indx)).readLine());
-//	    	  String x4 = (new BufferedReader(new InputStreamReader(indx)).readLine());
-	    	  	
-	      //System.out.println((new BufferedReader(new InputStreamReader(titl)).readLine()));
-	      /*if(x1 != null)
-	      {
-	    	  	Field tit = new StringField("title", x1, Field.Store.YES);
-	    	  	doc.add(tit);
-	    	  	//System.out.println("haha");
-	      }
-	      if(x2 != null)
-	      {
-	    	  	Field aut = new StringField("author", x2, Field.Store.YES);
-	    	  	doc.add(aut);
-	    	  	//System.out.println("haha");
-	      }
-	      if(x4 != null)
-	      {
-	    	  	Field con = new StringField("contents", x4, Field.Store.YES);
-	    	  	doc.add(con);
-	    	  	//System.out.println("haha");
-	      }*/
+
 	      if(x3 != null)
 	      {
 	    	  	Field ind = new StringField("index", x3, Field.Store.YES);
@@ -274,9 +226,6 @@ public class FileIndexer {
 	        System.out.println("adding " + file);
 	        writer.addDocument(doc);
 	      } else {
-	        // Existing index (an old copy of this document may have been indexed) so 
-	        // we use updateDocument instead to replace the old one matching the exact 
-	        // path, if present:
 	        System.out.println("updating " + file);
 	        writer.updateDocument(new Term("path", file.toString()), doc);
 	      }
