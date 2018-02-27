@@ -39,7 +39,7 @@ public class CranFileSplitter {
 
 	public static void main(String[] args) {
 
-		String inputDirectory = "/home/ubuntu/lucene-assignment/cran";
+		String inputDirectory = "/home/ubuntu/lucene-assignment/cran/";
 		Splitter documents_splitter = new Splitter(inputDirectory + "cran.all.1400", "/home/ubuntu/lucene-assignment/split_documents/");
 		documents_splitter.start();
 		//Splitter queries_splitter = new Splitter(inputDirectory + "cran.qry", "/Users/rahulsatya/Desktop/split_query");
