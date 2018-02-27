@@ -40,7 +40,7 @@ public class Searching {
   
   public static void main(String[] args) throws Exception {
 	  //final Path path = Paths.get("cran.qry");
-	  BufferedReader br = new BufferedReader(new FileReader(new File("cran.qry")));
+	  BufferedReader br = new BufferedReader(new FileReader(new File("/home/ubuntu/lucene-assignment/cran.qry")));
 	  String line;
 	  String queryString = "";
 	  int i = 0;
