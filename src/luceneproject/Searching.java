@@ -75,7 +75,7 @@ public class Searching {
   	public static void runQuery(String queryString, int queryNo) throws IOException, ParseException
   	{
   		
-  		String index = "../lucene-assignment/index_file";
+  		String index = "/home/ubuntu/lucene-assignment/index_file";
 	    String field = "author";
 	    String queries = null;
 	    int repeat = 0;

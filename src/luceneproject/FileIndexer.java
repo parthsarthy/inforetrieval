@@ -33,8 +33,8 @@ public class FileIndexer {
   /** Index all text files under a directory. */
   public static void main(String[] args) {
 
-    String indexPath = "../lucene-assignment/index_file/";
-    String docsPath = "../lucene-assignment/split_documents/";
+    String indexPath = "/home/ubuntu/lucene-assignment/index_file/";
+    String docsPath = "/home/ubuntu/lucene-assignment/split_documents/";
     boolean create = true;
   
     final Path docDir = Paths.get(docsPath);
