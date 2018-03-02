@@ -1,6 +1,3 @@
-/**
- * 
- */
 package luceneproject;
 
 /**
@@ -27,7 +24,6 @@ public class CranFileSplitter {
 
 		Splitter(String inputFile, String outputDirectory) {
 			super();
-			//System.out.println("inside Thread");
 			this.inputFile = inputFile;
 			this.outputDirectory = outputDirectory;
 		}
@@ -42,12 +38,9 @@ public class CranFileSplitter {
 		String inputDirectory = "/home/ubuntu/lucene-assignment/cran/";
 		Splitter documents_splitter = new Splitter(inputDirectory + "cran.all.1400", "/home/ubuntu/lucene-assignment/split_documents/");
 		documents_splitter.start();
-		//Splitter queries_splitter = new Splitter(inputDirectory + "cran.qry", "/Users/rahulsatya/Desktop/split_query");
-		//queries_splitter.start();
 
 		try {
 			documents_splitter.join();
-			//queries_splitter.join();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -56,19 +49,14 @@ public class CranFileSplitter {
 	public static void processFile(String inputFile, String outputDirectory) {
 		BufferedReader bufferedReader = null;
 		String line;
-//		String file_name = null;
 		String output = "";
 		Integer counter = 0;
-//		boolean controlW = false;
 
 		try {
 			bufferedReader = new BufferedReader(new FileReader(new File(inputFile)));
 			bufferedReader.readLine();
 
-			while ((line = bufferedReader.readLine()) != null) {
-
-				//System.out.println(line);
-				
+			while ((line = bufferedReader.readLine()) != null) {				
 				if (line.startsWith(".T")) {
 					counter ++;
 				}
@@ -104,7 +92,6 @@ public class CranFileSplitter {
 		Writer fileWriter = new FileWriter(outputDirectory);
 		BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 		bufferedWriter.write(output);
-		//bufferedWriter.write(analyze(output));
 		bufferedWriter.close();
 		fileWriter.close();
 	}
