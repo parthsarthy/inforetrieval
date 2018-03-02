@@ -18,7 +18,14 @@ public class PrecRecCalc {
 	{
 		
 		int i = 0;
-		BufferedReader br1 = new BufferedReader(new FileReader(new File("/home/ubuntu/lucene-assignment/cranqrel")));
+		// Reading results that are already provided
+		BufferedReader br1 = new BufferedReader(new FileReader(new File("../lucene-assignment/cranqrel")));
+		BufferedReader bufferReader = new BufferedReader(new FileReader(new File("../lucene-assignment/cranqrel")));
+		
+		//File to store results
+		File newFile = new File("../lucene-assignment/searchResults.txt");
+		BufferedReader br2 = new BufferedReader(new FileReader(newFile));
+		
 		while(br1.readLine() != null)
 		{
 			i++;
@@ -30,35 +37,33 @@ public class PrecRecCalc {
 		
 		String line;
 		
-		i = 0;
-		
-		BufferedReader bufferReader = new BufferedReader(new FileReader(new File("/home/ubuntu/lucene-assignment/cranqrel")));
-		
+		int j = 0;
 		while((line = bufferReader.readLine()) != null)
 		{
 			line = line.replaceAll("\\s+", " ");
 			if(line.charAt(line.length() - 1) != 32)
 			{
-				givenResults[i][0] = Integer.parseInt(line.substring(0, line.indexOf(32)));
-				givenResults[i][1] = Integer.parseInt(line.substring(line.indexOf(32) + 1, line.indexOf(32, line.indexOf(32) + 1)));
-				givenResults[i][2] = Integer.parseInt(line.substring(line.indexOf(32, line.indexOf(32) + 1) + 1));
+				givenResults[j][0] = Integer.parseInt(line.substring(0, line.indexOf(32)));
+				givenResults[j][1] = Integer.parseInt(line.substring(line.indexOf(32) + 1, line.indexOf(32, line.indexOf(32) + 1)));
+				givenResults[j][2] = Integer.parseInt(line.substring(line.indexOf(32, line.indexOf(32) + 1) + 1));
 			}
 			else
 			{
-				givenResults[i][0] = Integer.parseInt(line.substring(0, line.indexOf(32)));
-				givenResults[i][1] = Integer.parseInt(line.substring(line.indexOf(32) + 1, line.indexOf(32, line.indexOf(32) + 1)));
-				givenResults[i][2] = Integer.parseInt(line.substring(line.indexOf(32, line.indexOf(32) + 1) + 1,line.lastIndexOf(32)));
+				givenResults[j][0] = Integer.parseInt(line.substring(0, line.indexOf(32)));
+				givenResults[j][1] = Integer.parseInt(line.substring(line.indexOf(32) + 1, line.indexOf(32, line.indexOf(32) + 1)));
+				givenResults[j][2] = Integer.parseInt(line.substring(line.indexOf(32, line.indexOf(32) + 1) + 1,line.lastIndexOf(32)));
 			}
-			if(givenResults[i][2] < 4)
+			if(givenResults[j][2] < 4)
 			{
-				i++;
+				j++;
 			}
 		}
-		counter = i;
-		File newFile = new File("/home/ubuntu/lucene-assignment/searchResults.txt");
-		bufferReader = new BufferedReader(new FileReader(newFile));
+		bufferReader.close();
+		
+		counter = j;
+		
 		i = 0;
-		while((line = bufferReader.readLine()) != null)
+		while((line = br2.readLine()) != null)
 		{
 			line = line.replaceAll("\\s+", " ");
 			if(i<3375)
