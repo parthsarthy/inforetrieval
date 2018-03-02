@@ -55,7 +55,7 @@ public class PrecRecCalc {
 			}
 		}
 		counter = i;
-		File newFile = new File("../lucene-assignment/searchResults.txt");
+		File newFile = new File("/home/ubuntu/lucene-assignment/searchResults.txt");
 		bufferReader = new BufferedReader(new FileReader(newFile));
 		i = 0;
 		while((line = bufferReader.readLine()) != null)
