@@ -19,26 +19,26 @@ public class PrecRecCalc {
 		
 		int i = 0;
 		// Reading results that are already provided
-		BufferedReader br1 = new BufferedReader(new FileReader(new File("../lucene-assignment/cranqrel")));
-		BufferedReader bufferReader = new BufferedReader(new FileReader(new File("../lucene-assignment/cranqrel")));
+		File cranQueryRelevance = new File("../lucene-assignment/cranqrel");
+		BufferedReader br1 = new BufferedReader(new FileReader(cranQueryRelevance));
 		
 		//File to store results
-		File newFile = new File("../lucene-assignment/searchResults.txt");
-		BufferedReader br2 = new BufferedReader(new FileReader(newFile));
+		File searchResult = new File("../lucene-assignment/searchResults.txt");
+		BufferedReader br2 = new BufferedReader(new FileReader(searchResult));
 		
 		while(br1.readLine() != null)
 		{
 			i++;
 		}
 		br1.close();
-		
+		br1 = new BufferedReader(new FileReader(cranQueryRelevance));
 		givenResults = new int[i][3];
 		myResults = new int[225*15][2];
 		
 		String line;
 		
 		int j = 0;
-		while((line = bufferReader.readLine()) != null)
+		while((line = br1.readLine()) != null)
 		{
 			line = line.replaceAll("\\s+", " ");
 			if(line.charAt(line.length() - 1) != 32)
@@ -58,7 +58,6 @@ public class PrecRecCalc {
 				j++;
 			}
 		}
-		bufferReader.close();
 		
 		counter = j;
 		
@@ -73,20 +72,21 @@ public class PrecRecCalc {
 				i++;
 			}
 		}
-		PrecRecCalculator(givenResults, myResults);
+		br1.close();
+		br2.close();
+//		
+		pRCalculator(givenResults, myResults);
 	}
 
-	private static void PrecRecCalculator(int[][] results, int[][] searchResults) throws IOException 
+	private static void pRCalculator(int[][] results, int[][] searchResults) throws IOException 
 	{ 		
-//		File file = new File("../lucene-assignment/recallPrecision.txt");
-//		BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 		int match = 0;
 		double precision = 0;
-		double avg_precision = 0;
+		double avgPrec = 0;
 		int flag2 = 1;
 		int flag3 = 0;
 		double recall = 0;
-		double avg_recall = 0;
+		double avgRecall = 0;
 		System.out.println(counter);
 		for(int i = 0; i < (counter); i++)
 		{
@@ -94,11 +94,11 @@ public class PrecRecCalc {
 			{
 				recall = (double)match/(i-flag3);
 				flag3 = i;
-				avg_recall = avg_recall + recall;
+				avgRecall = avgRecall + recall;
 				flag2++;
 				flag = flag + 15;
 				precision = (double)match/15.0;
-				avg_precision = avg_precision + precision;
+				avgPrec = avgPrec + precision;
 				match = 0;
 				System.out.println(results[i - 1][0] + " " + Math.round(precision * 100.0)/100.0 + " " + Math.round(recall * 100.0)/100.0);
 			}
@@ -107,16 +107,15 @@ public class PrecRecCalc {
 				match++;
 			}	
 		}
-		// FOR THE LAST QUERY
 		recall = (double)match/(counter - 1 -flag3);
-		avg_recall = avg_recall + recall;
+		avgRecall = Math.round(((avgRecall + recall)/225)*100.0);
 		precision = (double)match/15.0;
-		avg_precision = avg_precision + precision;
+		avgPrec = Math.round(((avgPrec+precision)/225)*100.0);
 		
 		match = 0;
 		System.out.println(results[counter - 1][0] + " " + precision + " " + recall);
-		System.out.println("Average precission when 15 documents are returned for each search = " + Math.round((avg_precision/225)*100.0)/ 100.0);
-		System.out.println("Average recall when 15 documents are returned for each search  = " + Math.round((avg_recall/225)*100.0)/ 100.0);	
+		System.out.println("Average precission when 15 documents are returned for each search = " + avgPrec/ 100.0);
+		System.out.println("Average recall when 15 documents are returned for each search  = " + avgRecall/ 100.0);	
 	}
 	
 	public static boolean checkResults(int fileIndex, int[][] searchResults)

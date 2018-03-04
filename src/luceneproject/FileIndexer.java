@@ -62,8 +62,8 @@ public class FileIndexer {
                  + "in INDEX_PATH that can be searched with SearchFiles";
     
     
-    String indexPath = "/home/ubuntu/lucene-assignment/index_file/";
-    String docsPath = "/home/ubuntu/lucene-assignment/split_documents/";
+    String indexPath = "../lucene-assignment/index_file/";
+    String docsPath = "../lucene-assignment/split_documents/";
     boolean create = true;
 
 //    if (docsPath == null) {
