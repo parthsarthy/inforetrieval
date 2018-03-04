@@ -87,7 +87,7 @@ public class PrecRecCalc {
 		int flag3 = 0;
 		double recall = 0;
 		double avgRecall = 0;
-		System.out.println(counter);
+//		System.out.println(counter);
 		for(int i = 0; i < (counter); i++)
 		{
 			if(flag2 != results[i][0])
