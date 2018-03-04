@@ -30,9 +30,9 @@ public class Searching {
 	  
 	  public static void main(String[] args) throws Exception {
 		  //Reading given queries
-		  BufferedReader br = new BufferedReader(new FileReader(new File("../lucene-assignment/cran.qry")));
+		  BufferedReader br = new BufferedReader(new FileReader(new File("/home/ubuntu/lucene-assignment/cran.qry")));
 		  String readLine;
-		  File file = new File("../lucene-assignment/searchResults.txt");
+		  File file = new File("/home/ubuntu/lucene-assignment/searchResults.txt");
 		  BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 		  String qryStr = "";
 		  int i = 0;
@@ -67,7 +67,7 @@ public class Searching {
 	  	public static void runQuery(String queryString, int queryNo, BufferedWriter writer) throws IOException, ParseException
 	  	{
 	  		
-	  		String indexFilePath = "../lucene-assignment/index_file";
+	  		String indexFilePath = "/home/ubuntu/lucene-assignment/index_file";
 		    IndexReader dirReader = DirectoryReader.open(FSDirectory.open(Paths.get(indexFilePath)));
 		    IndexSearcher indexSearcher = new IndexSearcher(dirReader);
 //		    indexSearcher.setSimilarity(new BM25Similarity());

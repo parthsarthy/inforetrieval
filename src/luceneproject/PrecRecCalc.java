@@ -19,11 +19,11 @@ public class PrecRecCalc {
 		
 		int i = 0;
 		// Reading results that are already provided
-		File cranQueryRelevance = new File("../lucene-assignment/cranqrel");
+		File cranQueryRelevance = new File("/home/ubuntu/lucene-assignment/cranqrel");
 		BufferedReader br1 = new BufferedReader(new FileReader(cranQueryRelevance));
 		
 		//File to store results
-		File searchResult = new File("../lucene-assignment/searchResults.txt");
+		File searchResult = new File("/home/ubuntu/lucene-assignment/searchResults.txt");
 		BufferedReader br2 = new BufferedReader(new FileReader(searchResult));
 		
 		while(br1.readLine() != null)
